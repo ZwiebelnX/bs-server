@@ -41,8 +41,137 @@
 		</div>
         <div  class="col-sm-2">
         	<!--这两个按钮只显示一个。登陆后只有添加按钮，未登录时只有登录按钮-->
-        	<button type="button" class="btn btn-success">登录</button>
-        	<button type="button" class="btn btn-primary">添加</button>
+        	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3">登录</button>
+<!-- 模态框（Modal） -->
+								<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-dialog modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+													×
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													管理员登录
+												</h4>
+											</div>
+											<div class="modal-body">
+												<!--  模态框内容，在此处添加一个表单 -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="uname" class="col-sm-3 control-label">用户名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="uname" name="uname" class="form-control well" placeholder="请输入用户名"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="upwd" class="col-sm-3 control-label">密码</label>
+                                <div class="col-sm-9">
+                                    <input type="password" id="upwd" name="upwd" class="form-control well" placeholder="请输入密码"/>
+                                </div>
+                            </div>
+
+                        </form>
+
+											</div>
+											<div class="modal-footer">
+												<div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">登录</button>
+    
+    
+      <button type="submit" class="btn btn-default" data-dismiss="modal">取消</button>
+   
+    </div>
+											</div>
+										</div><!-- /.modal-content -->
+										</div>
+									</div><!-- /.modal -->
+								</div>
+        	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">添加</button>
+        	<!-- 模态框（Modal） -->
+								<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-dialog modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+													×
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													添加
+												</h4>
+											</div>
+											<div class="modal-body">
+												<!--  模态框内容，在此处添加一个表单 -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="bookname" class="col-sm-3 control-label">书名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="bookname" name="bookname" class="form-control well" placeholder="请输入用户名"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="author" class="col-sm-3 control-label">作者</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="author" name="author" class="form-control well" placeholder="请输入作者"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ISBN" class="col-sm-3 control-label">ISBN</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="ISBN" name="ISBN" class="form-control well" placeholder="请输入ISBN"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Nofpages" class="col-sm-3 control-label">页数</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="Nofpages" name="Nofpages" class="form-control well" placeholder="请输入页数"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publishingHouse" class="col-sm-3 control-label">出版社</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="publishingHouse" name="publishingHouse" class="form-control well" placeholder="请输入出版社"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publishingTime" class="col-sm-4 control-label">出版时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="publishingTime" name="publishingTime" class="form-control well" placeholder="请输入出版时间"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="binding" class="col-sm-3 control-label">装帧</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="binding" name="binding" class="form-control well" placeholder="请输入装帧"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="format" class="col-sm-3 control-label">开本</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="format" name="format" class="form-control well" placeholder="请输入开本"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">确定</button>
+    
+    
+      <button type="submit" class="btn btn-default">取消</button>
+   
+    </div>
+  </div>
+  
+  
+</form>
+
+											</div>
+											
+										</div><!-- /.modal-content -->
+										</div>
+									</div><!-- /.modal -->
+								</div>
+                            	</div>
         </div>
     </div>
 </div>
@@ -66,24 +195,16 @@
 
 						<figure  class="white">
 							<button type="button" class="btn btn-default delete btn-sm">✖</button>
-                                <a href="detail.html">
+                                <a role="button" data-toggle="modal" data-target="#myModal1">
 								<img src="img/psd-4.jpg" alt="" />
-
+                                
 								<dl>
 									<dt>Wordpress theme</dt>
 									<dd>Symphony is a responsive one page website template designed with sketches and coded with html5 and php. Freebie released by Lacoste Xavier.</dd>	
 								</dl>
 								</a>
-                            <div id="wrapper-part-info">
-                            	<div class="part-info-image"><img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>
-                            	<div id="part-info" role="button" data-toggle="modal" data-target="#myModal">软件体系结构
-                            	
-                            		<button type="button" class="btn btn-xs">修改</button>
-                            			
-                            
-                            	</div>
 								<!-- 模态框（Modal） -->
-								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									<div class="modal-dialog">
 										<div class="modal-dialog modal-sm">
 										<div class="modal-content">
@@ -143,6 +264,97 @@
 										</div>
 									</div><!-- /.modal -->
 								</div>
+                            <div id="wrapper-part-info">
+                            	<div class="part-info-image"><img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>
+                            	<div id="part-info" >软件体系结构
+                            	
+                            		<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2">修改</button>
+                            		
+                            <!-- 模态框（Modal） -->
+								<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-dialog modal-sm">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+													×
+												</button>
+												<h4 class="modal-title" id="myModalLabel">
+													修改基本信息
+												</h4>
+											</div>
+											<div class="modal-body">
+												<!--  模态框内容，在此处添加一个表单 -->
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="bookname" class="col-sm-3 control-label">书名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="bookname" name="bookname" class="form-control well" placeholder="请输入用户名"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="author" class="col-sm-3 control-label">作者</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="author" name="author" class="form-control well" placeholder="请输入作者"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="ISBN" class="col-sm-3 control-label">ISBN</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="ISBN" name="ISBN" class="form-control well" placeholder="请输入ISBN"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Nofpages" class="col-sm-3 control-label">页数</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="Nofpages" name="Nofpages" class="form-control well" placeholder="请输入页数"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publishingHouse" class="col-sm-4 control-label">出版社</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="publishingHouse" name="publishingHouse" class="form-control well" placeholder="请输入出版社"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="publishingTime" class="col-sm-4 control-label">出版时间</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="publishingTime" name="publishingTime" class="form-control well" placeholder="请输入出版时间"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="binding" class="col-sm-3 control-label">装帧</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="binding" name="binding" class="form-control well" placeholder="请输入装帧"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="format" class="col-sm-3 control-label">开本</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="format" name="format" class="form-control well" placeholder="请输入开本"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">确定</button>
+    
+    
+      <button type="submit" class="btn btn-default">取消</button>
+   
+    </div>
+  </div>
+  
+  
+</form>
+
+											</div>
+											
+										</div><!-- /.modal-content -->
+										</div>
+									</div><!-- /.modal -->
+								</div>
+                            	</div>
+								
 
 							</div>
                         </figure>

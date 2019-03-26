@@ -1,4 +1,4 @@
-package com.bs.bsserver.controller;
+package com.bs.bsserver.Controller;
 
 import com.bs.bsserver.service.MainService;
 import org.json.JSONObject;

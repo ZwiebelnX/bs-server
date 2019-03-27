@@ -25,13 +25,16 @@ public class MainController {
     @RequestMapping(value = "/book", method = RequestMethod.POST)
     public ResponseEntity addBook(@RequestBody String jsonString){
         JSONObject json = new JSONObject(jsonString);
-        if(mainService.addBook(json)) return new ResponseEntity(HttpStatus.OK);
+        if(MainService.addBook(json)) return new ResponseEntity(HttpStatus.OK);
         return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
-
+    
+    //删除图书
     @RequestMapping(value = "/book/{id}", method = RequestMethod.DELETE)
-    public String addBook(@PathVariable long id){
-        return null;
+    public ResponseEntity deleteBook(@PathVariable long id){
+        long id = id;
+        if(MainService.deleteBook(id))  return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)

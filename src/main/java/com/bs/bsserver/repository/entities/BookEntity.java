@@ -23,6 +23,7 @@ public class BookEntity {
     private String pages;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     public long getId() {
         return id;

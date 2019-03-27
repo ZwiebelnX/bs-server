@@ -1,0 +1,653 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Home</title>
+
+	<!-- Behavioral Meta Data -->
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script src="js/jquery.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="icon" type="image/png" href="img/small-logo-01.png">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,900italic,700italic,700,500italic,400italic,500,300italic,300' rel='stylesheet' type='text/css'>
+	<link href='css/bootstrap.css' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+	<link href='css/style.css' rel='stylesheet' type='text/css'>
+
+
+</head>
+<body>
+
+<a name="ancre"></a>
+
+<!-- CACHE -->
+
+
+<!-- HEADER -->
+
+<div  class="container">
+	<div class="row main-header">
+		<div class="col-sm-7"><h1 class="title">图书管理系统</h1></div>
+		<div  class="col-sm-3">
+				<input type="text" name="search" id="search_input"  autocomplete=off required>
+				<button type="button" class="btn btn-default" onclick="search()">搜索</button>
+
+		</div>
+		<div  class="col-sm-2">
+			<!--这两个按钮只显示一个。登陆后只有添加按钮，未登录时只有登录按钮-->
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3">登录</button>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									×
+								</button>
+								<h4 class="modal-title" id="myModalLabel">
+									管理员登录
+								</h4>
+							</div>
+							<div class="modal-body">
+								<!--  模态框内容，在此处添加一个表单 -->
+								<form class="form-horizontal" role="form">
+									<div class="form-group">
+										<label for="uid" class="col-sm-3 control-label">ID</label>
+										<div class="col-sm-9">
+											<input type="text" id="uid" name="uname" class="form-control well" placeholder="请输入用户名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="upwd" class="col-sm-3 control-label">密码</label>
+										<div class="col-sm-9">
+											<input type="password" id="upwd" name="upwd" class="form-control well" placeholder="请输入密码"/>
+										</div>
+									</div>
+
+								</form>
+
+							</div>
+							<div class="modal-footer">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button type="" class="btn btn-default" onclick="login()">登录</button>
+
+
+									<button class="btn btn-default" data-dismiss="modal">取消</button>
+
+								</div>
+							</div>
+						</div><!-- /.modal-content -->
+					</div>
+				</div><!-- /.modal -->
+			</div>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">添加</button>
+			<!-- 模态框（Modal） -->
+			<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+									×
+								</button>
+								<h4 class="modal-title" id="myModalLabel">
+									添加
+								</h4>
+							</div>
+							<div class="modal-body">
+								<!--  模态框内容，在此处添加一个表单 -->
+								<form class="form-horizontal" role="form" action="#" method="post" id="addbookForm">
+									<div class="form-group">
+										<label for="bookname" class="col-sm-3 control-label">书名</label>
+										<div class="col-sm-9">
+											<input type="text" id="name" name="bookname" class="form-control well" placeholder="请输入书名"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="author" class="col-sm-3 control-label">作者</label>
+										<div class="col-sm-9">
+											<input type="text" id="author" name="author" class="form-control well" placeholder="请输入作者"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="ISBN" class="col-sm-3 control-label">ISBN</label>
+										<div class="col-sm-9">
+											<input type="text" id="ISBN" name="ISBN" class="form-control well" placeholder="请输入ISBN"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="Nofpages" class="col-sm-3 control-label">页数</label>
+										<div class="col-sm-9">
+											<input type="text" id="pages" name="Nofpages" class="form-control well" placeholder="请输入页数"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="publishingHouse" class="col-sm-3 control-label">出版社</label>
+										<div class="col-sm-9">
+											<input type="text" id="publisher" name="publishingHouse" class="form-control well" placeholder="请输入出版社"/>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="publishingTime" class="col-sm-4 control-label">出版时间</label>
+										<div class="col-sm-8">
+											<input type="text" id="publishTime" name="publishingTime" class="form-control well" placeholder="请输入出版时间"/>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<button type="button" class="btn btn-default" onclick="addbook()">确定</button>
+
+
+											<button type="" class="btn btn-default">取消</button>
+
+										</div>
+									</div>
+
+
+								</form>
+
+							</div>
+
+						</div><!-- /.modal-content -->
+					</div>
+				</div><!-- /.modal -->
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- NAVBAR -->
+
+
+<!-- FILTER -->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						×
+					</button>
+					<h4 class="modal-title" >
+						基本信息
+					</h4>
+				</div>
+				<div class="modal-body">
+					<table class="table table-bordered">
+						<tbody>
+						<tr>
+							<td>书名</td>
+							<td>软件体系结构(第2版)</td>
+						</tr>
+						<tr>
+							<td>作者</td>
+							<td>张友生</td>
+						</tr>
+						<tr>
+							<td>ISBN</td>
+							<td>9787302133162, 7302133166</td>
+						</tr>
+						<tr>
+							<td>页数</td>
+							<td>307</td>
+						</tr>
+						<tr>
+							<td>出版社</td>
+							<td>清华大学出版社</td>
+						</tr>
+						<tr>
+							<td>出版时间</td>
+							<td>2006-11-1</td>
+						</tr>
+						<tr>
+							<td>装帧</td>
+							<td>平装</td>
+						</tr>
+						<tr>
+							<td>开本</td>
+							<td>16</td>
+						</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div>
+	</div><!-- /.modal -->
+</div>
+<!-- 模态框（修改） -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						×
+					</button>
+					<h4 class="modal-title">
+						修改基本信息
+						<div type="hidden" id="Mbookid" value=""></div>
+					</h4>
+				</div>
+				<div class="modal-body">
+					<!--  模态框内容，在此处添加一个表单 -->
+					<form class="form-horizontal" role="form">
+
+						<div class="form-group">
+							<label for="Mbookname" class="col-sm-3 control-label">书名</label>
+							<div class="col-sm-9">
+
+								<input type="text" id="Mbookname" name="bookname" class="form-control well" placeholder="请输入用户名"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Mauthor" class="col-sm-3 control-label">作者</label>
+							<div class="col-sm-9">
+								<input type="text" id="Mauthor" name="author" class="form-control well" placeholder="请输入作者"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="MISBN" class="col-sm-3 control-label">ISBN</label>
+							<div class="col-sm-9">
+								<input type="text" id="MISBN" name="ISBN" class="form-control well" placeholder="请输入ISBN"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Mpages" class="col-sm-3 control-label">页数</label>
+							<div class="col-sm-9">
+								<input type="text" id="Mpages" name="Nofpages" class="form-control well" placeholder="请输入页数"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="Mpublisher" class="col-sm-4 control-label">出版社</label>
+							<div class="col-sm-8">
+								<input type="text" id="Mpublisher" name="publishingHouse" class="form-control well" placeholder="请输入出版社"/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="MpublishTime" class="col-sm-4 control-label">出版时间</label>
+							<div class="col-sm-8">
+								<input type="text" id="MpublishTime" name="publishingTime" class="form-control well" placeholder="请输入出版时间"/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button class="btn btn-default" type="button" onclick="Confirmmodifybook()">确定</button>
+
+
+								<button type="" class="btn btn-default">取消</button>
+
+							</div>
+						</div>
+
+
+					</form>
+
+				</div>
+
+			</div><!-- /.modal-content -->
+		</div>
+	</div><!-- /.modal -->
+</div>
+<!-- PORTFOLIO -->
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		var books;
+		$.ajax({url:"/books",success:function(result){
+				books=JSON.parse(JSON.stringify(result));
+
+
+
+				for(var i=0;i<books.length;i++){
+					var div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+
+					var div2='<dt>书名：'+books[i].name+
+							'</dt><dd>作者：'+books[i].author+
+							'</dd><dd>出版社：'+books[i].publisher+
+							'</dd><dd>页数：'+books[i].pages+
+							'</dd><dd>ISBN：'+books[i].isbn+'</dd></dl>';
+					var div3='</dl></a><div id="wrapper-part-info"><div class="part-info-image">' +
+							'<img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>' +
+							'<div id="part-info"><text>'+books[i].name+'</text>' +
+							'<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button>' +
+							'</div></div></figure>';
+					$("#shu").append(div1 + div2+div3);
+
+				}
+
+		}});
+
+
+
+	});
+	function login() {
+		var id=document.getElementById('uid').value;
+		var password=document.getElementById('upwd').value;
+		var json={"id":id,"password":password};
+		$.ajax({
+
+			//几个参数需要注意一下
+			type: "POST",//方法类型
+			url: "/login",//url
+			async: false,
+			contentType:"application/json",
+			data:JSON.stringify(json),
+			success: function (result) {
+				alert("登录成功");
+				window.location.reload();
+				console.log(result);//打印服务端返回的数据(调试用)
+				if (result.resultCode == 200) {
+					alert("SUCCESS");
+				}
+				;
+			},
+			error : function(e) {
+				alert("异常！"+JSON.stringify(e));
+
+			}
+		});
+
+	}
+	function modifybook(id) {
+		document.getElementById('Mbookid').innerText =id;
+
+	}
+	function search() {
+		var name=document.getElementById('search_input').value ;
+		$("#shu").html("");
+		if(name==""){
+			$.ajax({url:"/books",success:function(result){
+					books=JSON.parse(JSON.stringify(result));
+					for(var i=0;i<books.length;i++){
+						var div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+
+						var div2='<dt>书名：'+books[i].name+
+								'</dt><dd>作者：'+books[i].author+
+								'</dd><dd>出版社：'+books[i].publisher+
+								'</dd><dd>页数：'+books[i].pages+
+								'</dd><dd>ISBN：'+books[i].isbn+'</dd></dl>';
+						var div3='</dl></a><div id="wrapper-part-info"><div class="part-info-image">' +
+								'<img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>' +
+								'<div id="part-info"><text>'+books[i].name+'</text>' +
+								'<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button>' +
+								'</div></div></figure>';
+						$("#shu").append(div1 + div2+div3);
+
+					}
+
+				}});
+		}
+		else{
+		var data={"name":name}
+		$.ajax({
+			type: "POST",
+			url: "/search",
+			async: false,
+			data:JSON.stringify(data),
+			contentType:"application/json",
+			success: function (result) {
+				if (result.resultCode == 200) {
+					alert("SUCCESS");
+				}
+				books=JSON.parse(JSON.stringify(result));
+				for(var i=0;i<books.length;i++) {
+					var div1 = '<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" onclick="delbook(' + books[i].id + ')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+
+					var div2='<dt>书名：'+books[i].name+
+							'</dt><dd>作者：'+books[i].author+
+							'</dd><dd>出版社：'+books[i].publisher+
+							'</dd><dd>页数：'+books[i].pages+
+							'</dd><dd>ISBN：'+books[i].isbn+'</dd></dl>';
+					var div3='</dl></a><div id="wrapper-part-info"><div class="part-info-image">' +
+							'<img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>' +
+							'<div id="part-info"><text>'+books[i].name+'</text>' +
+							'<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button>' +
+							'</div></div></figure>';
+					$("#shu").append(div1 + div2 + div3);
+				}
+			},
+		});
+		}
+
+	}
+	function delbook(id) {
+
+		$.ajax({
+
+			//几个参数需要注意一下
+			type: "DELETE",//方法类型
+			url: "/book/"+id ,//url
+			async: false,
+			contentType:"application/json",
+			success: function (result) {
+				alert("删除成功");
+				window.location.reload();
+				console.log(result);//打印服务端返回的数据(调试用)
+				if (result.resultCode == 200) {
+					alert("SUCCESS");
+				}
+				;
+			},
+			error : function(e) {
+				alert("异常！"+JSON.stringify(e));
+
+			}
+		});
+	}
+	function Confirmmodifybook(){
+		var modifyjson={
+			"id":document.getElementById("Mbookid").innerText,
+			"name":document.getElementById("Mbookname").value,
+			"publisher":document.getElementById("Mpublisher").value,
+			"publishTime":document.getElementById("MpublishTime").value,
+			"author":document.getElementById("Mauthor").value,
+			"ISBN":document.getElementById("MISBN").value,
+			"pages":document.getElementById("Mpages").value,
+		}
+
+		$.ajax({
+
+			//几个参数需要注意一下
+			type: "POST",//方法类型
+			url: "/modifyBook" ,//url
+			async: false,
+			contentType:"application/json",
+			data:JSON.stringify(modifyjson),
+			success: function (result) {
+				alert("修改成功");
+				window.location.reload();
+				console.log(result);//打印服务端返回的数据(调试用)
+				if (result.resultCode == 200) {
+					alert("SUCCESS");
+				}
+				;
+			},
+			error : function(e) {
+				alert("异常！"+JSON.stringify(e));
+
+			}
+		});
+
+	}
+	function addbook(){
+
+
+
+
+		var addjson={
+			"name":document.getElementById("name").value,
+			"publisher":document.getElementById("publisher").value,
+			"publishTime":document.getElementById("publishTime").value,
+			"author":document.getElementById("author").value,
+			"ISBN":document.getElementById("ISBN").value,
+			"pages":document.getElementById("pages").value,
+		}
+
+		var jsonstr=JSON.stringify({'name': 'a','publisher': 'a', 'publishTime': 'a', 'author': 'a', 'ISBN': 'a', 'pages': 'a'})
+		alert(JSON.stringify(addjson));
+		$.ajax({
+
+			//几个参数需要注意一下
+			type: "POST",//方法类型
+			url: "/book" ,//url
+			async: false,
+			contentType:"application/json",
+			data:JSON.stringify(addjson),
+			success: function (result) {
+				alert("添加成功");
+				window.location.reload();
+				console.log(result);//打印服务端返回的数据(调试用)
+				if (result.resultCode == 200) {
+					alert("SUCCESS");
+				}
+				;
+			},
+			error : function(e) {
+				alert("异常！"+JSON.stringify(e));
+
+			}
+		});
+	}
+
+</script>
+
+<div id="wrapper-container">
+
+	<div class="container object">
+
+		<p id="main-container-image" >
+
+			<section class="work">
+				<div  id="shu"></div>
+
+
+
+
+
+
+
+			</section>
+
+		</div>
+
+
+	</div>
+
+	<div id="wrapper-oldnew">
+		<div class="oldnew">
+			<div class="wrapper-oldnew-prev">
+				<div id="oldnew-prev"></div>
+			</div>
+			<div class="wrapper-oldnew-next">
+				<div id="oldnew-next"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+</div>
+
+<!-- SCRIPT -->
+
+<script src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="js/jquery.localScroll.min.js"></script>
+<script type="text/javascript" src="js/jquery-animate-css-rotate-scale.js"></script>
+<script type="text/javascript" src="js/fastclick.min.js"></script>
+<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+<script type="text/javascript" src="js/jquery.animate-shadow-min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script>
+/* PRELOADER */
+function preloader() {
+	if (document.images) {
+		var img1 = new Image();
+		var img2 = new Image();
+		var img3 = new Image();
+		var img4 = new Image();
+		var img5 = new Image();
+		var img6 = new Image();
+		var img7 = new Image();
+		var img8 = new Image();
+		var img9 = new Image();
+		var img10 = new Image();
+		var img11 = new Image();
+		var img12 = new Image();
+		var img13 = new Image();
+		var img14 = new Image();
+		var img15 = new Image();
+		var img16 = new Image();
+		var img17 = new Image();
+		var img18 = new Image();
+		var img19 = new Image();
+		var img20 = new Image();
+		img1.src = "img/sa.jpg";
+		img2.src = "img/os.jpg";
+		img3.src = "img/cp.jpg";
+		img4.src = "img/nsta.jpg";
+		img5.src = "img/glmr.jpg";
+		img6.src = "img/deng.jpg";
+		img7.src = "img/Stray Birds.jpg";
+		img8.src = "img/little Prince.jpg";
+		img9.src = "img/zhangyu-1.jpg";
+		img10.src = "img/zhangyu-2.jpg";
+		img11.src = "img/zhangyu-3.jpg";
+		img12.src = "img/Student Handbook.jpg";
+		img13.src = "img/cack.jpg";
+		img14.src = "img/mao.jpg";
+		img15.src = "img/ccp.jpg";
+		img16.src = "img/ds.jpg";
+		img17.src = "img/dbms.jpg";
+		img18.src = "img/cn.jpg";
+		img19.src = "img/dc.jpg";
+		img20.src = "img/ab.jpg";
+	}
+}
+function addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			if (oldonload) {
+				oldonload();
+			}
+			func();
+		}
+	}
+}
+addLoadEvent(preloader);
+</script>
+
+</body>
+</html>
+

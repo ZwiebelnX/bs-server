@@ -135,4 +135,19 @@ public class MainService {
         bookRepo.save(newBook);
         return true;
     }
+    
+    //删除图书
+    @Transactional
+    public boolean deleteBook(long id){
+        long bookId;
+        try{
+            bookId = id;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+        bookRepo.delete(bookId);
+        return true;
+    }
 }

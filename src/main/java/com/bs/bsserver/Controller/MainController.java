@@ -15,10 +15,13 @@ public class MainController {
     public MainController(MainService mainService){
         this.mainService = mainService;
     }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    
+    //登录
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestBody String jsonString){
-        return null;
+        JSONObject  json = new JSONObject(jsonString);
+        if(MainService.doLogin(json)) return "successful";
+        return "failed";
     }
 
     //添加图书

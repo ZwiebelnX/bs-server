@@ -3,6 +3,7 @@ package com.bs.bsserver.service;
 import com.bs.bsserver.repository.docker.BookRepo;
 import com.bs.bsserver.repository.docker.UserRepo;
 import com.bs.bsserver.repository.entities.BookEntity;
+import com.bs.bsserver.repository.entities.UserEntity;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,24 @@ public class MainService {
     }
 
 
+    //登录
+    @Transactional
+    public boolean doLogin(JSONObject jsonObject){
+        String username;
+        String password;
+        try{
+            username = jsonObject.getString("username");
+            password = jsonObject.getString("password");
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+       boolean ifExisit = userRepo.existsByUserNameAndPassword(username,password);
+       if( ifExisit ) return true;
+       else return false;
+    }
+    
+    
     //添加图书
     @Transactional
     public boolean addBook(JSONObject jsonObject){

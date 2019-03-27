@@ -28,20 +28,25 @@ public class MainService {
         return userRepo.findAll();
     }
     public boolean login(JSONObject jsonObject){
-        long id;
+        String name;
         String password;
         try{
-            id=Long.parseLong(jsonObject.getString("id"));
+            name=jsonObject.getString("name");
             password=jsonObject.getString("password");
+            if(userRepo.existsByNameAndPassword(name,password)){
+                return true;
+
+            }
 
         }catch (Exception e){
             return false;
         }
-        UserEntity user=userRepo.findById(id).get();
-        if(user.getPassword().equals(password)){
-            return true;
-        }
         return false;
+//        UserEntity user=userRepo.findById(id).get();
+//        if(user.getPassword().equals(password)){
+//            return true;
+//        }
+//        return false;
     }
     public  boolean deleteBook(long id){
 
@@ -136,18 +141,5 @@ public class MainService {
         return true;
     }
     
-    //删除图书
-    @Transactional
-    public boolean deleteBook(long id){
-        long bookId;
-        try{
-            bookId = id;
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
 
-        bookRepo.delete(bookId);
-        return true;
-    }
 }

@@ -45,7 +45,7 @@
 		</div>
 		<div  class="col-sm-2">
 			<!--这两个按钮只显示一个。登陆后只有添加按钮，未登录时只有登录按钮-->
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3">登录</button>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal3" id="loginbutton">登录</button>
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -91,7 +91,7 @@
 					</div>
 				</div><!-- /.modal -->
 			</div>
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal4">添加</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" id="addbutton" data-target="#myModal4">添加</button>
 			<!-- 模态框（Modal） -->
 			<div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -319,10 +319,31 @@
 		$.ajax({url:"/books",success:function(result){
 				books=JSON.parse(JSON.stringify(result));
 
+				var username;
+				if(sessionStorage.getItem('username')!=null){
+					username=sessionStorage.getItem('username');
+					$("#addbutton").show();
+					$("#loginbutton").hide();
 
 
+				}
+				else{
+					$("#addbutton").hide();
+					$("#loginbutton").show();
+
+					username=null;
+				}
 				for(var i=0;i<books.length;i++){
-					var div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+					var div1,div4;
+					if(username!=null){
+						div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div4='<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button></div></div></figure>';
+					}
+					else{
+						div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div4='</div></div></figure>';
+					}
+
 
 					var div2='<dt>书名：'+books[i].name+
 							'</dt><dd>作者：'+books[i].author+
@@ -331,22 +352,24 @@
 							'</dd><dd>ISBN：'+books[i].isbn+'</dd></dl>';
 					var div3='</dl></a><div id="wrapper-part-info"><div class="part-info-image">' +
 							'<img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>' +
-							'<div id="part-info"><text>'+books[i].name+'</text>' +
-							'<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button>' +
-							'</div></div></figure>';
-					$("#shu").append(div1 + div2+div3);
+							'<div id="part-info"><text>'+books[i].name+'</text>'
+
+					$("#shu").append(div1 + div2+div3+div4);
 
 				}
+
+
 
 		}});
 
 
 
+
 	});
 	function login() {
-		var id=document.getElementById('uid').value;
+		var name=document.getElementById('uid').value;
 		var password=document.getElementById('upwd').value;
-		var json={"id":id,"password":password};
+		var json={"name":name,"password":password};
 		$.ajax({
 
 			//几个参数需要注意一下
@@ -356,7 +379,9 @@
 			contentType:"application/json",
 			data:JSON.stringify(json),
 			success: function (result) {
-				alert("登录成功");
+				alert(name+"登录成功");
+				sessionStorage.setItem('username',name);
+
 				window.location.reload();
 				console.log(result);//打印服务端返回的数据(调试用)
 				if (result.resultCode == 200) {
@@ -381,8 +406,26 @@
 		if(name==""){
 			$.ajax({url:"/books",success:function(result){
 					books=JSON.parse(JSON.stringify(result));
+
+
+					var username;
+					if(sessionStorage.getItem('username')!=null){
+						username=sessionStorage.getItem('username');
+					}
+					else{
+						username=null;
+					}
 					for(var i=0;i<books.length;i++){
-						var div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						var div1,div4;
+						if(username!=null){
+							div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+							div4='<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" id="mod" onclick="modifybook('+books[i].id+')">修改</button></div></div></figure>';
+						}
+						else{
+							div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+							div4='</div></div></figure>';
+						}
+
 
 						var div2='<dt>书名：'+books[i].name+
 								'</dt><dd>作者：'+books[i].author+
@@ -391,12 +434,9 @@
 								'</dd><dd>ISBN：'+books[i].isbn+'</dd></dl>';
 						var div3='</dl></a><div id="wrapper-part-info"><div class="part-info-image">' +
 								'<img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>' +
-								'<div id="part-info"><text>'+books[i].name+'</text>' +
-								'<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button>' +
-								'</div></div></figure>';
-						$("#shu").append(div1 + div2+div3);
+								'<div id="part-info"><text>'+books[i].name+'</text>'
 
-					}
+						$("#shu").append(div1 + div2+div3+div4);}
 
 				}});
 		}
@@ -413,8 +453,24 @@
 					alert("SUCCESS");
 				}
 				books=JSON.parse(JSON.stringify(result));
-				for(var i=0;i<books.length;i++) {
-					var div1 = '<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" onclick="delbook(' + books[i].id + ')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+				var username;
+				if(sessionStorage.getItem('username')!=null){
+					username=sessionStorage.getItem('username');
+				}
+				else{
+					username=null;
+				}
+				for(var i=0;i<books.length;i++){
+					var div1,div4;
+					if(username!=null){
+						div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div4='<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button></div></div></figure>';
+					}
+					else{
+						div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div4='</div></div></figure>';
+					}
+
 
 					var div2='<dt>书名：'+books[i].name+
 							'</dt><dd>作者：'+books[i].author+
@@ -423,10 +479,9 @@
 							'</dd><dd>ISBN：'+books[i].isbn+'</dd></dl>';
 					var div3='</dl></a><div id="wrapper-part-info"><div class="part-info-image">' +
 							'<img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>' +
-							'<div id="part-info"><text>'+books[i].name+'</text>' +
-							'<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button>' +
-							'</div></div></figure>';
-					$("#shu").append(div1 + div2 + div3);
+							'<div id="part-info"><text>'+books[i].name+'</text>'
+
+					$("#shu").append(div1 + div2+div3+div4);
 				}
 			},
 		});

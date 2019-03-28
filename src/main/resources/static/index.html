@@ -336,11 +336,11 @@
 				for(var i=0;i<books.length;i++){
 					var div1,div4;
 					if(username!=null){
-						div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/'+(i%30+1)+'.jpg" alt="" /><dl>';
 						div4='<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button></div></div></figure>';
 					}
 					else{
-						div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/'+(i%30+1)+'.jpg" alt="" /><dl>';
 						div4='</div></div></figure>';
 					}
 
@@ -351,7 +351,7 @@
 							'</dd><dd>页数：'+books[i].pages+
 							'</dd><dd>ISBN：'+books[i].isbn+'</dd></dl>';
 					var div3='</dl></a><div id="wrapper-part-info"><div class="part-info-image">' +
-							'<img src="img/icon-psd.svg" alt="" width="28" height="28"/></div>' +
+							'<img src="" alt="" width="28" height="28"/></div>' +
 							'<div id="part-info"><text>'+books[i].name+'</text>'
 
 					$("#shu").append(div1 + div2+div3+div4);
@@ -418,11 +418,11 @@
 					for(var i=0;i<books.length;i++){
 						var div1,div4;
 						if(username!=null){
-							div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+							div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/'+(i%30+1)+'.jpg" alt="" /><dl>';
 							div4='<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" id="mod" onclick="modifybook('+books[i].id+')">修改</button></div></div></figure>';
 						}
 						else{
-							div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+							div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/'+(i%30+1)+'.jpg" alt="" /><dl>';
 							div4='</div></div></figure>';
 						}
 
@@ -463,11 +463,11 @@
 				for(var i=0;i<books.length;i++){
 					var div1,div4;
 					if(username!=null){
-						div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div1='<figure  class="white"><button type="button" class="btn btn-default delete btn-sm" name="delete" onclick="delbook('+books[i].id+')">✖</button><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/'+(i%10+21)+'.jpg" alt="" /><dl>';
 						div4='<button type="button" class="btn btn-xs" data-toggle="modal" data-target="#myModal2" onclick="modifybook('+books[i].id+')">修改</button></div></div></figure>';
 					}
 					else{
-						div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/psd-1.jpg" alt="" /><dl>';
+						div1='<figure  class="white"><a role="button" data-toggle="modal" data-target="#myModal1"><img src="img/'+(i%10+21)+'.jpg" alt="" /><dl>';
 						div4='</div></div></figure>';
 					}
 
@@ -611,16 +611,7 @@
 
 	</div>
 
-	<div id="wrapper-oldnew">
-		<div class="oldnew">
-			<div class="wrapper-oldnew-prev">
-				<div id="oldnew-prev"></div>
-			</div>
-			<div class="wrapper-oldnew-next">
-				<div id="oldnew-next"></div>
-			</div>
-		</div>
-	</div>
+	
 
 
 

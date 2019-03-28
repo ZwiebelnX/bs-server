@@ -21,6 +21,7 @@ public class BookEntity {
     private String publishTime;
     private String isbn;
     private String pages;
+    private String nickname;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,6 +66,7 @@ public class BookEntity {
         this.name = name;
     }
 
+
     @Basic
     @Column(name = "author", nullable = false, length = 30)
     public String getAuthor() {
@@ -75,6 +77,14 @@ public class BookEntity {
         this.author = author;
     }
 
+    @Basic
+    @Column(name = "nickname", nullable = true, length = 30)
+    public String getNickname() {
+        return nickname;
+    }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
     @Basic
     @Column(name = "publisher", nullable = false, length = 30)
     public String getPublisher() {
@@ -135,4 +145,5 @@ public class BookEntity {
     public int hashCode() {
         return Objects.hash(id, gmtCreate, gmtModified, name, author, publisher, publishTime, isbn, pages);
     }
+
 }

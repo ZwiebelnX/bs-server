@@ -65,6 +65,14 @@ public class MainController {
 
         return (List<BookEntity>) mainService.findallBooks();
     }
+    @RequestMapping(value = "/search/{id}", method = RequestMethod.GET)
+    public BookEntity findBook(@PathVariable long id){
+
+
+         return mainService.findBook(id);
+
+
+    }
 
     @RequestMapping(value = "/search",method = RequestMethod.POST)
     public List<BookEntity> Search(@RequestBody String jsonString){

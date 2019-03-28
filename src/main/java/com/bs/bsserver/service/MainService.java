@@ -70,6 +70,7 @@ public class MainService {
         String author;
         String ISBN;
         String pages;
+        String nickname;
         long id;
         try{
             id=Long.parseLong(jsonObject.getString("id"));
@@ -79,6 +80,7 @@ public class MainService {
             author = jsonObject.getString("author");
             ISBN = jsonObject.getString("ISBN");
             pages = jsonObject.getString("pages");
+            nickname=jsonObject.getString("nickname");
         } catch (Exception e){
             e.printStackTrace();
             return false;
@@ -91,6 +93,8 @@ public class MainService {
         newBook.setAuthor(author);
         newBook.setIsbn(ISBN);
         newBook.setPages(pages);
+        newBook.setNickname(nickname);
+
 
 
         bookRepo.save(newBook);
@@ -108,6 +112,14 @@ public class MainService {
             return null;
         }
     }
+    public BookEntity findBook(Long id){
+        try{
+
+            return bookRepo.findById(id).get();
+        }catch (Exception e){
+            return null;
+        }
+    }
     //添加图书
     @Transactional
     public boolean addBook(JSONObject jsonObject){
@@ -117,6 +129,7 @@ public class MainService {
         String author;
         String ISBN;
         String pages;
+
         try{
             bookName = jsonObject.getString("name");
             publisher = jsonObject.getString("publisher");
@@ -124,6 +137,7 @@ public class MainService {
             author = jsonObject.getString("author");
             ISBN = jsonObject.getString("ISBN");
             pages = jsonObject.getString("pages");
+
         } catch (Exception e){
             e.printStackTrace();
             return false;
@@ -136,6 +150,8 @@ public class MainService {
         newBook.setAuthor(author);
         newBook.setIsbn(ISBN);
         newBook.setPages(pages);
+        newBook.setNickname(new Integer((int)(21+Math.random()*10)).toString());
+
 
         bookRepo.save(newBook);
         return true;
